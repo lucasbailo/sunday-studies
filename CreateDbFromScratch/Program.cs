@@ -1,4 +1,7 @@
 
+using CreateDbFromScratch.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace CreateDbFromScratch
 {
     public class Program
@@ -13,6 +16,11 @@ namespace CreateDbFromScratch
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<SchoolContext>(options =>
+                options.UseSqlServer("Data Source=TIDEV-03;Integrated Security=True;Initial Catalog=SchoolDb;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False")
+            );
+            
 
             var app = builder.Build();
 
